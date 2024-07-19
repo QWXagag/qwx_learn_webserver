@@ -1,8 +1,10 @@
 #pragma once
 #include <sys/epoll.h>
 #include <vector>
+#include "Channel.h"
 
 
+class Channel;
 class Epoll
 {
 private:
@@ -12,6 +14,7 @@ private:
 public:
     Epoll();
     ~Epoll();
-    void add_fd(int fd, uint32_t op);
-    std::vector<epoll_event> poll(int timeout = -1);
+    // void add_fd(int fd, uint32_t op);
+    std::vector<Channel*> poll(int timeout = -1);
+    void update_channel(Channel* chl);
 };
