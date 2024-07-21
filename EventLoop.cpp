@@ -26,7 +26,6 @@ void EventLoop::loop()
         {
             (*it)->handle_event();
         }
-        
     }
 }
 

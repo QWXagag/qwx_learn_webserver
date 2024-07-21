@@ -56,6 +56,7 @@ void Channel::set_callback(std::function<void()> _cb)
 void Channel::handle_event()
 {
     callback();
+    // elp->threadpoll_add_task(callback);
 }
 
 

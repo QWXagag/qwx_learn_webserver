@@ -1,6 +1,5 @@
 #pragma once
 #include "Socket.h"
-#include "InetAddress.h"
 #include "Channel.h"
 #include "EventLoop.h"
 
@@ -14,15 +13,13 @@ class Acceptor
 {
 private:
     Socket* serv;
-    InetAddress* serv_addr;
     Channel* chl;
     EventLoop* elp;
+    std::function<void(Socket*)> new_connection_callback;
 
 public:
     Acceptor(EventLoop*);
     ~Acceptor();
     void accept_connection();
-
-    std::function<void(Socket*)> new_connection_callback;
     void set_new_connection_callback(std::function<void(Socket*)>);  
 };

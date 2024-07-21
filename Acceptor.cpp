@@ -2,10 +2,10 @@
 
 
 
-Acceptor::Acceptor(EventLoop* _elp) : elp(_elp)
+Acceptor::Acceptor(EventLoop* _elp) : elp(_elp), chl(nullptr)
 {
     serv = new Socket();
-    serv_addr = new InetAddress("127.0.0.1", 8888);
+    InetAddress* serv_addr = new InetAddress("127.0.0.1", 8888);
     serv->bind(serv_addr);
     serv->listen();
     serv->setnonblocking();
@@ -19,7 +19,6 @@ Acceptor::Acceptor(EventLoop* _elp) : elp(_elp)
 Acceptor::~Acceptor()
 {
     delete serv;
-    delete serv_addr;
     delete chl;
 }
 

@@ -3,6 +3,7 @@
 #include "EventLoop.h"
 #include "Acceptor.h"
 #include "Connection.h"
+#include "Thread.h"
 #include <map>
 
 class Acceptor;
@@ -10,10 +11,11 @@ class EventLoop;
 class Server
 {
 private:
-    EventLoop* loop;
+    EventLoop* main_reactor;
+    std::vector<EventLoop*> sub_reactor;
     Acceptor* apt;
     std::map<int, Connection*> connections;
-
+    Thread* thread_poll;
 public:
     Server(EventLoop*);
     ~Server();

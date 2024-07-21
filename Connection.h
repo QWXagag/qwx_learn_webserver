@@ -2,6 +2,7 @@
 #include "Socket.h"
 #include "EventLoop.h"
 #include "Channel.h"
+#include "Buffer.h"
 
 
 class Connection
@@ -11,6 +12,7 @@ private:
     EventLoop* elp;
     Channel* chl;
     std::function<void(Socket*)> delete_connection_callback;
+    Buffer* read_buf;
 
 public:
     Connection(EventLoop*, Socket*);
